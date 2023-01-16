@@ -18,7 +18,7 @@ const app = (nums, target) => {
   return pairs;
 }
 
-//Simplified version without validations:
+// Simplified version without validations:
 const simpleApp = (nums, target) => {
   const numsMap = nums.reduce((accum, num) => ({ ...accum, [num]: true }));
   nums.forEach(num => {
@@ -28,6 +28,20 @@ const simpleApp = (nums, target) => {
       console.log(`[First num]: ${num} [Second num]: ${candidate}`);
     }
   });
+}
+
+// Another solution (faster and uses less space as well)
+const betterApp = (nums, target) => {
+  const numsMap = {};
+  nums.forEach(num => {
+    const candidate = target-num;
+    if (numsMap[candidate]) {
+      console.log(`[First num]: ${num} [Second num]: ${candidate}`);
+    }
+    else {
+      numsMap[num] = true;
+    }
+  })
 }
 
 module.exports = app;
